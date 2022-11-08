@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { AiOutlinePlusSquare } from 'react-icons/ai';
+import { AiFillStar, AiOutlinePlusSquare } from 'react-icons/ai';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { AuthProvider } from '../../../contexts/AuthContext';
-import TableData from './TableData';
+import ServiceTableData from './ServiceTableData';
 
 const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
     const { user } = useContext(AuthProvider);
     const service = useLoaderData();
-    const { _id, date, description, img, price, title } = service.data;
-    console.log(service.data);
+    const { _id, ratings, description, img, price, title } = service.data;
 
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
@@ -30,7 +29,7 @@ const ServiceDetails = () => {
                         </PhotoProvider>
                         <div className="p-6 lg:col-span-5 text-start">
                             <p className="text-2xl mb-3 font-semibold sm:text-4xl">{title}</p>
-                            <span className="text-xs dark:text-gray-400">Date: {date}</span>
+                            <span className="text-base flex items-center gap-1 dark:text-gray-300">Ratings: {ratings} <AiFillStar className='text-amber-400'></AiFillStar></span>
                             <p className='mt-4'>{description}</p>
                             <p className='mt-4 text-amber-500 text-lg font-semibold'>Price: ${price}</p>
                         </div>
@@ -47,7 +46,7 @@ const ServiceDetails = () => {
                         {
                             user?.uid ?
                                 <>
-                                    <Link to={`/AddReviews/${_id}`}><button className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span>Add Review</span></button></Link>
+                                    <Link to={`/AddReviews/${_id}`}><button className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span className='font-semibold'>Add Review</span></button></Link>
                                 </>
                                 :
                                 <>
@@ -58,7 +57,7 @@ const ServiceDetails = () => {
                 </div>
 
                 <div className="overflow-x-auto">
-                    <table className="table w-full">
+                    <table className="table table-normal w-full">
 
                         <thead>
                             <tr>
@@ -66,15 +65,15 @@ const ServiceDetails = () => {
                                 <th>Service Name</th>
                                 <th>Date</th>
                                 <th>Review</th>
-                                <th>Action</th>
+                                <th>Ratings</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                reviews.map(rev => <TableData
+                                reviews.map(rev => <ServiceTableData
                                     key={rev._id}
                                     rev={rev}
-                                ></TableData>)
+                                ></ServiceTableData>)
                             }
                         </tbody>
                     </table>

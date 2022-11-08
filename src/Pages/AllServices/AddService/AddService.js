@@ -1,13 +1,41 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import toast from 'react-hot-toast';
 import { AiFillPlusSquare } from 'react-icons/ai';
-import { AuthProvider } from '../../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const AddService = () => {
-    const { user } = useContext(AuthProvider);
+    const navigate = useNavigate();
 
     const handleAddService = event => {
         event.preventDefault();
         const form = event.target;
+        const serviceData = {
+            title: form.name.value,
+            price: form.price.value,
+            img: form.image.value,
+            ratings: form.ratings.value,
+            description: form.description.value
+        }
+
+        fetch('http://localhost:5000/allServices', {
+            method: "POST",
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify(serviceData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    toast.success(data.message);
+                    form.reset();
+                    navigate('/allServices');
+                }
+                else {
+                    toast.error(data.message)
+                }
+            })
     }
 
     return (
@@ -31,6 +59,11 @@ const AddService = () => {
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="image">Image URL</label>
                             <input type="text" placeholder="Image URL" name='image' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                        </div>
+
+                        <div className='text-start'>
+                            <label className='font-semibold' htmlFor="ratings">Ratings </label>
+                            <input type="text" placeholder="Ratings" name='ratings' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>

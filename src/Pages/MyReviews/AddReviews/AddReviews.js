@@ -22,6 +22,7 @@ const AddReviews = () => {
             email: user?.email,
             date: startDate,
             image: user?.photoURL,
+            ratings: form.ratings.value,
             serviceName: title,
             review: form.review.value
         }
@@ -79,12 +80,18 @@ const AddReviews = () => {
                             <label className='font-semibold' htmlFor="date">Date</label>
                             <DatePicker className='input input-bordered input-primary mt-2 w-full shadow-lg border-none' selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
+
+                        <div className='text-start'>
+                            <label className='font-semibold' htmlFor="ratings">Ratings </label>
+                            <input type="text" placeholder="Ratings" name='ratings' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                        </div>
                     </div>
 
                     <div className='w-11/12 mt-5 mx-auto text-start'>
                         <label className='font-semibold' htmlFor="review">Review</label>
                         <textarea className="textarea shadow-lg border-none textarea-primary h-32 w-full mt-2" name='review' placeholder="Your Review" style={{ resize: 'none' }}></textarea>
                     </div>
+
                     <div className='flex justify-center'>
                         <button type='submit' className='px-4 py-2 flex items-center gap-2 rounded bg-violet-500 text-white  my-3 border-none'><BsFillCheckCircleFill></BsFillCheckCircleFill> <span className='font-semibold'>Submit</span></button>
                     </div>
