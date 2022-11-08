@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TableData = ({ rev }) => {
-    const { name, email, image, serviceName, review } = rev;
+    const { name, email, image, serviceName, date, review } = rev;
 
     return (
         <tr>
@@ -21,6 +21,7 @@ const TableData = ({ rev }) => {
             <td>
                 {serviceName}
             </td>
+            <td>{date}</td>
             <td>{review}</td>
             <th>
                 <button className="btn btn-ghost btn-xs">details</button>

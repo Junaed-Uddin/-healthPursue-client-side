@@ -1,9 +1,49 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AiFillPlusSquare } from 'react-icons/ai';
+import { AuthProvider } from '../../../contexts/AuthContext';
 
 const AddService = () => {
+    const { user } = useContext(AuthProvider);
+
+    const handleAddService = event => {
+        event.preventDefault();
+        const form = event.target;
+    }
+
     return (
-        <div>
-            add service
+        <div className='my-14'>
+            <div>
+                <h2 className='text-4xl mb-8 font-semibold'>Add Service</h2>
+            </div>
+            <div className='py-5 bg-gray-200 mx-5 sm:w-3/5 sm:mx-auto rounded-xl'>
+                <form onSubmit={handleAddService} className=' mt-5'>
+                    <div className='grid lg:grid-cols-2 w-11/12 mx-auto gap-5'>
+                        <div className='text-start'>
+                            <label className='font-semibold' htmlFor="name">Service Name</label>
+                            <input type="text" placeholder="Service Name" name='name' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
+                        </div>
+
+                        <div className='text-start'>
+                            <label className='font-semibold' htmlFor="price">Price</label>
+                            <input type="text" placeholder="Price" name='price' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
+                        </div>
+
+                        <div className='text-start'>
+                            <label className='font-semibold' htmlFor="image">Image URL</label>
+                            <input type="text" placeholder="Image URL" name='image' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                        </div>
+
+                        <div className='text-start'>
+                            <label className='font-semibold' htmlFor="description">Description</label>
+                            <input type="text" placeholder="description" name='description' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                        </div>
+                    </div>
+
+                    <div className='flex justify-center mt-4'>
+                        <button type='submit' className='px-4 py-2 flex items-center gap-2 rounded bg-violet-500 text-white  my-3 border-none'><AiFillPlusSquare></AiFillPlusSquare> <span className='font-semibold'>Add Service</span></button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

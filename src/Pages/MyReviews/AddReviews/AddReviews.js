@@ -1,22 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthProvider } from '../../../contexts/AuthContext';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
-import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddReviews = () => {
     const { user } = useContext(AuthProvider);
+    const [startDate, setStartDate] = useState(new Date());
     const navigate = useNavigate();
     const service = useLoaderData();
     const { _id, title } = service.data;
 
-    const handleCheckOut = event => {
+    const handleReview = event => {
         event.preventDefault();
         const form = event.target;
         const review = {
             serviceId: _id,
             name: form.name.value,
             email: user?.email,
+            date: startDate,
             image: user?.photoURL,
             serviceName: title,
             review: form.review.value
@@ -46,10 +50,10 @@ const AddReviews = () => {
     return (
         <div className='my-14'>
             <div>
-                <h2 className='text-4xl mb-8 '>Give Your Feedback</h2>
+                <h2 className='text-4xl mb-8 font-semibold'>Give Your Feedback</h2>
             </div>
             <div className='py-5 bg-gray-200 mx-5 sm:w-3/5 sm:mx-auto rounded-xl'>
-                <form onSubmit={handleCheckOut} className=' mt-5'>
+                <form onSubmit={handleReview} className=' mt-5'>
                     <div className='grid lg:grid-cols-2 w-11/12 mx-auto gap-5'>
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="name">Full Name</label>
@@ -57,7 +61,7 @@ const AddReviews = () => {
                         </div>
 
                         <div className='text-start'>
-                            <label className='font-semibold' htmlFor="service">Service</label>
+                            <label className='font-semibold' htmlFor="service">Service Name</label>
                             <input type="text" readOnly defaultValue={title} placeholder="Service" name='service' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
                         </div>
 
@@ -69,6 +73,11 @@ const AddReviews = () => {
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="email">Email</label>
                             <input type="email" placeholder="Your Email" readOnly defaultValue={user?.email} name='email' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                        </div>
+
+                        <div className='text-start'>
+                            <label className='font-semibold' htmlFor="date">Date</label>
+                            <DatePicker className='input input-bordered input-primary mt-2 w-full shadow-lg border-none' selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
                     </div>
 

@@ -23,8 +23,8 @@ const Navbar = () => {
         {
             user?.uid ?
                 <>
-                    <li><Link className='font-semibold text-gray-800' to='/MyReview'>My Review</Link></li>
                     <li><Link className='font-semibold text-gray-800' to='/AddService'>Add Service</Link></li>
+                    <li><Link className='font-semibold text-gray-800' to='/MyReview'>My Review</Link></li>
                     <li><Link className='font-semibold flex text-gray-800'><button onClick={handleSignOut} className='px-3 py-2 bg-violet-500 text-white rounded'>Logout</button></Link></li>
                 </>
                 :
@@ -47,7 +47,7 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case sm:text-3xl text-2xl">HealthPursue</Link>
+                <Link to='/' className="btn btn-ghost normal-case sm:text-3xl text-2xl text-violet-600">HealthPursue</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

@@ -63,7 +63,8 @@ const ServiceDetails = () => {
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>ServiceName</th>
+                                <th>Service Name</th>
+                                <th>Date</th>
                                 <th>Review</th>
                                 <th>Action</th>
                             </tr>
