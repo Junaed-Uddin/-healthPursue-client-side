@@ -10,12 +10,13 @@ const ServiceDetails = () => {
     const { user } = useContext(AuthProvider);
     const service = useLoaderData();
     const { _id, date, description, img, price, title } = service.data;
+    console.log(service.data);
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data.data))
-    }, [])
+    }, [_id])
 
     return (
         <div className='dark:bg-gray-200'>
