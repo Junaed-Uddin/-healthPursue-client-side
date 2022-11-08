@@ -1,20 +1,46 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthProvider } from '../../../contexts/AuthContext';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const AddReviews = () => {
     const { user } = useContext(AuthProvider);
+    const navigate = useNavigate();
+    const service = useLoaderData();
+    const { _id, title } = service.data;
 
     const handleCheckOut = event => {
         event.preventDefault();
         const form = event.target;
         const review = {
+            serviceId: _id,
             name: form.name.value,
             email: user?.email,
             image: user?.photoURL,
-            
+            serviceName: title,
+            review: form.review.value
         }
-        console.log(review)
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': "application/json"
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.success) {
+                    toast.success(data.message);
+                    form.reset();
+                    navigate(`/services/${_id}`)
+                }
+                else {
+                    toast.error(data.error)
+                }
+            })
     }
 
     return (
@@ -32,7 +58,7 @@ const AddReviews = () => {
 
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="service">Service</label>
-                            <input type="text" placeholder="Service" name='service' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
+                            <input type="text" readOnly defaultValue={title} placeholder="Service" name='service' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>

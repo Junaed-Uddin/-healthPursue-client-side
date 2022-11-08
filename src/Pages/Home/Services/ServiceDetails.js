@@ -1,13 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AiOutlinePlusSquare } from 'react-icons/ai';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { AuthProvider } from '../../../contexts/AuthContext';
+import TableData from './TableData';
 
 const ServiceDetails = () => {
+    const [reviews, setReviews] = useState([]);
     const { user } = useContext(AuthProvider);
     const service = useLoaderData();
     const { _id, date, description, img, price, title } = service.data;
+
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => setReviews(data.data))
+    }, [])
 
     return (
         <div className='dark:bg-gray-200'>
@@ -29,14 +37,16 @@ const ServiceDetails = () => {
                 </div>
             </section>
 
-            <div>
-
-                <div className="overflow-x-auto container max-w-8xl p-3 sm:p-6 mx-auto">
-                    <div className='flex justify-end mb-5'>
+            <div className='container max-w-8xl p-3 sm:p-6 mx-auto'>
+                <div className='flex flex-wrap justify-center gap-5 sm:gap-0 sm:justify-between items-center mb-5'>
+                    <div>
+                        <h2 className='text-3xl font-semibold'>All the Reviews</h2>
+                    </div>
+                    <div>
                         {
                             user?.uid ?
                                 <>
-                                    <Link to='/AddReviews'><button className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span>Add Review</span></button></Link>
+                                    <Link to={`/AddReviews/${_id}`}><button className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span>Add Review</span></button></Link>
                                 </>
                                 :
                                 <>
@@ -44,42 +54,26 @@ const ServiceDetails = () => {
                                 </>
                         }
                     </div>
+                </div>
 
+                <div className="overflow-x-auto">
                     <table className="table w-full">
 
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>image</th>
+                                <th>ServiceName</th>
                                 <th>Review</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="font-bold">Hart Hagerty</div>
-                                            <div className="text-sm opacity-50">United States</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    Zemlak, Daniel and Leannon
-                                    <br />
-                                    <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
-                                </td>
-                                <td>Purple</td>
-                                <th>
-                                    <button className="btn btn-ghost btn-xs">details</button>
-                                </th>
-                            </tr>
+                            {
+                                reviews.map(rev => <TableData
+                                    key={rev._id}
+                                    rev={rev}
+                                ></TableData>)
+                            }
                         </tbody>
                     </table>
                 </div>
