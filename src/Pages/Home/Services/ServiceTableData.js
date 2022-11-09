@@ -21,7 +21,7 @@ const ServiceTableData = ({ rev }) => {
             <td>
                 {serviceName}
             </td>
-            <td>{date}</td>
+            <td>{date ? date.toString() : null}</td>
             <td>{review}</td>
             <td>{ratings}</td>
         </tr>

@@ -59,10 +59,9 @@ const MyReviews = () => {
                     <h2 className='text-3xl font-semibold text-start mb-8'>User Reviews</h2>
                 </div>
                 <div className="overflow-x-auto">
-                    <table className="table table-normal w-full">
-
+                    <table className="table table-normal table-auto w-full">
                         <thead>
-                            <tr>
+                            <tr className='relative'>
                                 <th>Name</th>
                                 <th>Service Name</th>
                                 <th>Date</th>
