@@ -58,38 +58,38 @@ const AddReviews = () => {
                     <div className='grid lg:grid-cols-2 w-11/12 mx-auto gap-5'>
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="name">Full Name</label>
-                            <input type="text" placeholder="Full Name" name='name' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
+                            <input type="text" placeholder="Full Name" name='name' className="input input-bordered focus:outline-1 mt-2 input-primary w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="service">Service Name</label>
-                            <input type="text" readOnly defaultValue={title} placeholder="Service" name='service' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
+                            <input type="text" readOnly defaultValue={title} placeholder="Service" name='service' className="input input-bordered mt-2 focus:outline-1 input-primary w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="image">Image URL</label>
-                            <input type="text" placeholder="Image URL" name='image' defaultValue={user?.photoURL} readOnly className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                            <input type="text" placeholder="Image URL" name='image' defaultValue={user?.photoURL} readOnly className="input input-bordered input-primary focus:outline-1 mt-2 w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="email">Email</label>
-                            <input type="email" placeholder="Your Email" readOnly defaultValue={user?.email} name='email' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                            <input type="email" placeholder="Your Email" readOnly defaultValue={user?.email} name='email' className="input input-bordered input-primary focus:outline-1 mt-2 w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="date">Date</label>
-                            <DatePicker className='input input-bordered input-primary mt-2 w-full shadow-lg border-none' selected={startDate} onChange={(date) => setStartDate(date)} />
+                            <DatePicker className='input input-bordered input-primary mt-2 w-full shadow-lg border-none focus:outline-1' selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
 
                         <div className='text-start'>
-                            <label className='font-semibold' htmlFor="ratings">Ratings </label>
-                            <input type="text" placeholder="Ratings" name='ratings' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                            <label className='font-semibold' htmlFor="ratings">Ratings (out of 5) </label>
+                            <input type="text" placeholder="Ratings" name='ratings' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none focus:outline-1" required />
                         </div>
                     </div>
 
                     <div className='w-11/12 mt-5 mx-auto text-start'>
                         <label className='font-semibold' htmlFor="review">Review</label>
-                        <textarea className="textarea shadow-lg border-none textarea-primary h-32 w-full mt-2" name='review' placeholder="Your Review" style={{ resize: 'none' }}></textarea>
+                        <textarea className="textarea focus:outline-1 shadow-lg border-none textarea-primary h-32 w-full mt-2" name='review' placeholder="Your Review" style={{ resize: 'none' }}></textarea>
                     </div>
 
                     <div className='flex justify-center'>

@@ -48,27 +48,27 @@ const AddService = () => {
                     <div className='grid lg:grid-cols-2 w-11/12 mx-auto gap-5'>
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="name">Service Name</label>
-                            <input type="text" placeholder="Service Name" name='name' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
+                            <input type="text" placeholder="Service Name" name='name' className="input input-bordered mt-2 focus:outline-1 input-primary w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="price">Price</label>
-                            <input type="text" placeholder="Price" name='price' className="input input-bordered mt-2 input-primary w-full shadow-lg border-none" required />
+                            <input type="text" placeholder="Price" name='price' className="input input-bordered focus:outline-1 mt-2 input-primary w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="image">Image URL</label>
-                            <input type="text" placeholder="Image URL" name='image' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                            <input type="text" placeholder="Image URL" name='image' className="input input-bordered focus:outline-1 input-primary mt-2 w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
-                            <label className='font-semibold' htmlFor="ratings">Ratings </label>
-                            <input type="text" placeholder="Ratings" name='ratings' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                            <label className='font-semibold' htmlFor="ratings">Ratings (out of 5) </label>
+                            <input type="text" placeholder="Ratings" name='ratings' className="input input-bordered focus:outline-1 input-primary mt-2 w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
                             <label className='font-semibold' htmlFor="description">Description</label>
-                            <input type="text" placeholder="description" name='description' className="input input-bordered input-primary mt-2 w-full shadow-lg border-none" required />
+                            <input type="text" placeholder="description" name='description' className="input input-bordered input-primary mt-2 focus:outline-1 w-full shadow-lg border-none" required />
                         </div>
                     </div>
 

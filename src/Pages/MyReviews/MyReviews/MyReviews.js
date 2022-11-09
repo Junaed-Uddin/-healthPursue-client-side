@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthProvider } from '../../../contexts/AuthContext';
 import UserTableData from './UserTableData';
+import Swal from 'sweetalert2';
 
 const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
@@ -11,6 +13,44 @@ const MyReviews = () => {
             .then(res => res.json())
             .then(data => setReviews(data.data))
     }, [user?.email])
+
+
+    const handleDelete = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to recover this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/user-reviews/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.success) {
+                            const remaining = reviews.filter(rev => rev._id !== id);
+                            setReviews(remaining);
+                        }
+                        else {
+                            toast.error(data.error)
+                        }
+                    })
+
+                Swal.fire(
+                    'Deleted!',
+                    'Your Review has been deleted.',
+                    'success'
+                )
+            }
+        })
+
+    }
 
     return (
         <div className='dark:bg-gray-200 py-3'>
@@ -36,6 +76,7 @@ const MyReviews = () => {
                                 reviews.map(rev => <UserTableData
                                     key={rev._id}
                                     rev={rev}
+                                    handleDelete={handleDelete}
                                 ></UserTableData>)
                             }
                         </tbody>

@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const UserTableData = ({ rev }) => {
-    const { name, email, image, serviceName, date, review, ratings } = rev;
+const UserTableData = ({ rev, handleDelete }) => {
+    const { _id, name, email, image, serviceName, date, review, ratings } = rev;
+
     return (
         <tr>
             <td>
@@ -24,8 +26,10 @@ const UserTableData = ({ rev }) => {
             <td>{review}</td>
             <td>{ratings}</td>
             <td className='flex gap-2'>
-                <button className='px-3 py-3 rounded bg-blue-500 font-semibold text-white'>Edit</button>
-                <button className='px-3 py-3 rounded bg-red-500  font-semibold text-white'>Delete</button>
+                <Link to={`/editReviews/${_id}`}>
+                    <button className='px-3 py-3 rounded bg-blue-500 font-semibold text-white'>Edit</button>
+                </Link>
+                <button onClick={() => handleDelete(_id)} className='px-3 py-3 rounded bg-red-500  font-semibold text-white'>Delete</button>
             </td>
         </tr>
     );
