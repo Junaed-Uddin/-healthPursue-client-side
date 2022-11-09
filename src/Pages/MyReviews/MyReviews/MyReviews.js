@@ -69,31 +69,40 @@ const MyReviews = () => {
                 <div>
                     <h2 className='text-3xl font-semibold text-start mb-8'>User Reviews</h2>
                 </div>
-                <div className="overflow-x-auto">
-                    <table className="table table-normal table-auto w-full">
-                        <thead>
-                            <tr className='relative'>
-                                <th>Name</th>
-                                <th>Service Name</th>
-                                <th>Date</th>
-                                <th>Review</th>
-                                <th>Ratings</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                reviews.map(rev => <UserTableData
-                                    key={rev._id}
-                                    rev={rev}
-                                    handleDelete={handleDelete}
-                                ></UserTableData>)
-                            }
-                        </tbody>
-                    </table>
-                </div>
+
+                {
+                    reviews.length === 0 ?
+                        <div className='flex justify-center items-center h-44'>
+                            <p className='text-5xl font-semibold text-violet-500'>No reviews were added</p>
+                        </div>
+                        :
+                        <div className="overflow-x-auto h-44">
+                            <table className="table table-normal table-auto w-full">
+                                <thead>
+                                    <tr className='relative'>
+                                        <th>Name</th>
+                                        <th>Service Name</th>
+                                        <th>Date</th>
+                                        <th>Review</th>
+                                        <th>Ratings</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        reviews.map(rev => <UserTableData
+                                            key={rev._id}
+                                            rev={rev}
+                                            handleDelete={handleDelete}
+                                        ></UserTableData>)
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                }
+
             </div>
-        </div>
+        </div >
     );
 };
 

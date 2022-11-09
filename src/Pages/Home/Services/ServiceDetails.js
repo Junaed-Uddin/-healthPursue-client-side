@@ -56,28 +56,34 @@ const ServiceDetails = () => {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="table table-normal w-full">
-
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Service Name</th>
-                                <th>Date</th>
-                                <th>Review</th>
-                                <th>Ratings</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                reviews.map(rev => <ServiceTableData
-                                    key={rev._id}
-                                    rev={rev}
-                                ></ServiceTableData>)
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                {
+                    reviews.length === 0 ?
+                        <div>
+                            <p className='text-3xl text-violet-500 font-semibold'>No reviews Found</p>
+                        </div>
+                        :
+                        <div className="overflow-x-auto">
+                            <table className="table table-normal w-full">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Service Name</th>
+                                        <th>Date</th>
+                                        <th>Review</th>
+                                        <th>Ratings</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        reviews.map(rev => <ServiceTableData
+                                            key={rev._id}
+                                            rev={rev}
+                                        ></ServiceTableData>)
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                }
             </div>
         </div>
     );
