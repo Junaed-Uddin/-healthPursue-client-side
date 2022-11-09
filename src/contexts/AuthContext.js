@@ -10,13 +10,13 @@ const AuthContext = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const updateUser = (name, image) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, name, image)
     }
 
@@ -26,6 +26,7 @@ const AuthContext = ({ children }) => {
     }
 
     const LogOut = () => {
+        localStorage.removeItem("token");
         return signOut(auth);
     }
 

@@ -6,13 +6,24 @@ import Swal from 'sweetalert2';
 
 const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
-    const { user } = useContext(AuthProvider);
+    const { user, LogOut } = useContext(AuthProvider);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user-reviews?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setReviews(data.data))
-    }, [user?.email])
+        fetch(`http://localhost:5000/user-reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    return LogOut();
+                }
+                return res.json()
+            })
+            .then(data => setReviews(data?.data))
+            .catch(err => console.error(err));
+
+    }, [user?.email, LogOut])
 
 
     const handleDelete = id => {
