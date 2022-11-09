@@ -1,7 +1,10 @@
+import { Tooltip } from '@material-tailwind/react';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthProvider } from '../../../contexts/AuthContext';
+import userImg from '../../../assets/user/userImg.jpg';
+import './Navbar.css';
 
 const Navbar = () => {
     const { user, LogOut } = useContext(AuthProvider);
@@ -17,33 +20,42 @@ const Navbar = () => {
             })
     }
 
-    const menuItems = <>
-        <li><Link className='font-semibold text-gray-800' to='/home'>Home</Link></li>
-        <li><Link className='font-semibold text-gray-800' to='/blogs'>Blogs</Link></li>
+    const menuItems = <div className='flex flex-col text-start p-4 lg:flex-row lg:items-center gap-5'>
+        <NavLink className={`font-semibold text-gray-800 hover:text-amber-500 ${({ isActive }) => isActive ? 'active' : undefined}`} to='/home'>Home</NavLink>
+        <NavLink className={`font-semibold text-gray-800 hover:text-amber-500 ${({ isActive }) => isActive ? 'active' : undefined}`} to='/blogs'>Blogs</NavLink>
+        <NavLink className={`font-semibold text-gray-800 hover:text-amber-500 ${({ isActive }) => isActive ? 'active' : undefined}`} to='/AllServices'>Services</NavLink>
         {
             user?.uid ?
                 <>
-                    <li><Link className='font-semibold text-gray-800' to='/AddService'>Add Service</Link></li>
-                    <li><Link className='font-semibold text-gray-800' to='/MyReview'>My Review</Link></li>
-                    <li><Link className='font-semibold flex text-gray-800'><button onClick={handleSignOut} className='px-3 py-2 bg-violet-500 text-white rounded'>Logout</button></Link></li>
+                    <NavLink className={`font-semibold text-gray-800 hover:text-amber-500 ${({ isActive }) => isActive ? 'active' : undefined}`} to='/AddService'>Add Service</NavLink>
+                    <NavLink className={`font-semibold text-gray-800 hover:text-amber-500 ${({ isActive }) => isActive ? 'active' : undefined}`} to='/MyReview'>My Review</NavLink>
+
+                    <div className='flex items-center gap-4 sm:px-2'>
+                        <NavLink>
+                            <Tooltip className='text-amber-500 font-bold ' content={user?.displayName ? user?.displayName : "Anonymous"} placement="bottom">
+                                <img className='rounded-full border' style={{ height: '4   8px', width: '50px' }} src={user?.photoURL ? user.photoURL : userImg} referrerPolicy='no-referrer' alt="" />
+                            </Tooltip>
+                        </NavLink>
+
+                        <Link className={`font-semibold text-gray-800 hover:text-amber-500 ${({ isActive }) => isActive ? 'active' : undefined}`}><button onClick={handleSignOut} className='px-3 py-2 bg-violet-500 text-white rounded'>Logout</button></Link>
+                    </div>
                 </>
                 :
                 <>
-                    <li><Link className='font-semibold text-gray-800' to='/register'>Register</Link></li>
+                    <NavLink className='font-semibold text-gray-800 hover:text-amber-500' to='/register'>Register</NavLink>
                 </>
         }
 
-
-    </>;
+    </div>;
 
     return (
-        <div className="navbar bg-white py-5 px-5">
+        <div className="navbar bg-white py-3 sm:px-5">
             <div className="flex items-center navbar">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow relative bg-white rounded-box w-52">
                         {menuItems}
                     </ul>
                 </div>

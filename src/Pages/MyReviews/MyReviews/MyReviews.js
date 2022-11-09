@@ -3,10 +3,12 @@ import toast from 'react-hot-toast';
 import { AuthProvider } from '../../../contexts/AuthContext';
 import UserTableData from './UserTableData';
 import Swal from 'sweetalert2';
+import useTitle from '../../../hooks/useTitle';
 
 const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
     const { user, LogOut } = useContext(AuthProvider);
+    useTitle('My Review');
 
     useEffect(() => {
         fetch(`http://localhost:5000/user-reviews?email=${user?.email}`, {
@@ -76,8 +78,8 @@ const MyReviews = () => {
                             <p className='text-5xl font-semibold text-violet-500'>No reviews were added</p>
                         </div>
                         :
-                        <div className="overflow-x-auto h-44">
-                            <table className="table table-normal table-auto w-full">
+                        <div className="overflow-x-auto">
+                            <table className="table table-normal table-auto w-full h-full">
                                 <thead>
                                     <tr className='relative'>
                                         <th>Name</th>

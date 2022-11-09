@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../contexts/AuthContext';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
-    const { SignInUser } = useContext(AuthProvider);
+    const { SignInUser, googleSignIn } = useContext(AuthProvider);
+    useTitle('Login');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -33,7 +36,6 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
                         localStorage.setItem("token", data.token)
                         toast.success('Successfully Login');
                         navigate(from, { replace: true });
@@ -43,6 +45,40 @@ const Login = () => {
                 console.error(error)
                 toast.error(error.message);
             });
+    }
+
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(res => {
+                const user = res.user;
+                console.log(user);
+
+                const currentUser = {
+                    email: user?.email
+                }
+
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        localStorage.setItem("token", data.token)
+                        toast.success('Successfully Login');
+                        navigate(from, { replace: true });
+                    })
+
+            })
+            .catch(err => {
+                console.log(err);
+                toast.error(err.message);
+            })
     }
 
     return (
@@ -90,11 +126,21 @@ const Login = () => {
                         <div className="mt-4 mb-2 sm:mb-4">
                             <button
                                 type="submit"
-                                className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white bg-violet-500"
+                                className="inline-flex items-center justify-center w-full h-11 px-6 font-medium tracking-wide text-white bg-violet-500"
                             >
                                 Login
                             </button>
                         </div>
+
+                        <div className="mt-4 mb-2 sm:mb-4">
+                            <button onClick={handleGoogleSignIn}
+                                className="flex items-center gap-2 justify-center w-full h-12 px-6 font-medium shadow-xl border-t-2 border-gray-100 rounded tracking-wide text-black"
+                            >
+                                <FcGoogle size={25}></FcGoogle>
+                                <span>Sign in with Google</span>
+                            </button>
+                        </div>
+
                         <p className="text-xs text-gray-600 sm:text-sm">
                             <span>Doesn't have an account? Please<Link className='ml-1 text-violet-500 font-bold' to='/register'>Register</Link></span>
                         </p>

@@ -5,10 +5,12 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useTitle from '../../../hooks/useTitle';
 
 const AddReviews = () => {
     const { user } = useContext(AuthProvider);
     const [startDate, setStartDate] = useState(new Date());
+    useTitle('Add Review');
     const navigate = useNavigate();
     const service = useLoaderData();
     const { _id, title } = service.data;

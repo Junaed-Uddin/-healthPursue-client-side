@@ -2,9 +2,11 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { AiFillPlusSquare } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 
 const AddService = () => {
     const navigate = useNavigate();
+    useTitle('Add Service');
 
     const handleAddService = event => {
         event.preventDefault();

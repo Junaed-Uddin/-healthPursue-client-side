@@ -5,10 +5,12 @@ import { AuthProvider } from '../../../contexts/AuthContext';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from 'react-hot-toast';
+import useTitle from '../../../hooks/useTitle';
 
 const EditReviews = () => {
     const { user } = useContext(AuthProvider);
     const navigate = useNavigate();
+    useTitle('Edit Review');
     const existReviews = useLoaderData();
     const [reviews, setReviews] = useState(existReviews.data);
     const [startDate, setStartDate] = useState(new Date());
