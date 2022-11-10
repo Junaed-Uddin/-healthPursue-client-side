@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import useTitle from '../../../hooks/useTitle';
 
 const MyReviews = () => {
-    const { loading } = useContext(AuthProvider);
+    const [loading, setLoading] = useState(true);
     const [reviews, setReviews] = useState([]);
     const { user, LogOut } = useContext(AuthProvider);
     useTitle('My Review');
@@ -23,7 +23,10 @@ const MyReviews = () => {
                 }
                 return res.json()
             })
-            .then(data => setReviews(data?.data))
+            .then(data => {
+                setReviews(data?.data)
+                setLoading(false);
+            })
             .catch(err => console.error(err));
 
     }, [user?.email, LogOut])
@@ -71,8 +74,8 @@ const MyReviews = () => {
         <div className='dark:bg-gray-200 py-3'>
             <div className='container max-w-8xl p-3 sm:p-6 mx-auto '>
                 {
-                    reviews.length === 0 ?
-                        <div className='flex justify-center items-center h-44'>
+                    reviews.length === 0 && loading === false ?
+                        <div className='flex justify-center items-center h-64'>
                             <p className='text-5xl font-semibold text-violet-500'>No reviews were added</p>
                         </div>
                         :
@@ -80,7 +83,7 @@ const MyReviews = () => {
                             <div>
                                 <h2 className='text-3xl font-semibold text-start mb-8'>User Reviews</h2>
                             </div>
-                            <div className="overflow-x-auto">
+                            <div className="overflow-x-auto pb-10">
                                 <table className="table table-normal table-auto w-full h-full">
                                     <thead>
                                         <tr className='relative'>
