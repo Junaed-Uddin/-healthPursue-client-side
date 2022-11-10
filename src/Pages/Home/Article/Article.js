@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 const Article = () => {
     return (
         <div>
-            <section className="p-6 dark:bg-gray-800 dark:text-gray-100">
+            <section className="px-6 py-10 dark:bg-gray-200 dark:text-gray-100">
                 <div className="container mx-auto">
-                    <h2 className="text-4xl font-bold text-center dark:text-gray-50">News and Articles</h2>
-                    <div className="grid gap-6 my-12 lg:grid-cols-3">
+                    <h2 className="text-4xl font-bold text-center dark:text-gray-800">News and Articles</h2>
+                    <div className="grid gap-6 my-8 lg:grid-cols-3">
                         <div className="flex flex-col p-5 space-y-4 rounded-md dark:bg-gray-900">
                             <div>
                                 <img className='object-cover w-full h-64' src="https://www.eatthis.com/wp-content/uploads/sites/4/2021/08/secret-effects-eating-almonds.jpg?quality=82&strip=1" alt="" />
