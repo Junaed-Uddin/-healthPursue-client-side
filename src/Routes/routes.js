@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import AddService from "../Pages/AllServices/AddService/AddService";
 import AllServices from "../Pages/AllServices/AllServices/AllServices";
 import Blogs from "../Pages/Blogs/Blogs";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home/Home";
 import ServiceDetails from "../Pages/Home/Services/ServiceDetails";
 import Login from "../Pages/Login/Login";
@@ -15,6 +16,7 @@ import PrivateRoute from "./PrivateRoute";
 export const router = createBrowserRouter([
     {
         path: '/',
+        errorElement: <ErrorPage></ErrorPage>,
         element: <Main></Main>,
         children: [
             {
