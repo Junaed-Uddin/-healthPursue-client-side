@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../../contexts/AuthContext';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from 'react-hot-toast';
 import useTitle from '../../../hooks/useTitle';
@@ -13,7 +12,6 @@ const EditReviews = () => {
     useTitle('Edit Review');
     const existReviews = useLoaderData();
     const [reviews, setReviews] = useState(existReviews.data);
-    const [startDate, setStartDate] = useState(new Date());
     const { _id, name, ratings, serviceName, review } = existReviews.data;
 
     const handleEdit = event => {
@@ -66,18 +64,8 @@ const EditReviews = () => {
                         </div>
 
                         <div className='text-start'>
-                            <label className='font-semibold' htmlFor="image">Image URL</label>
-                            <input type="text" placeholder="Image URL" name='image' defaultValue={user?.photoURL} readOnly className="input input-bordered input-primary focus:outline-0 mt-2 w-full shadow-lg border-none" required />
-                        </div>
-
-                        <div className='text-start'>
                             <label className='font-semibold' htmlFor="email">Email</label>
                             <input type="email" placeholder="Your Email" readOnly defaultValue={user?.email} name='email' className="input input-bordered input-primary focus:outline-0 mt-2 w-full shadow-lg border-none" required />
-                        </div>
-
-                        <div className='text-start'>
-                            <label className='font-semibold' htmlFor="date">Date</label>
-                            <DatePicker readOnly dateFormat="MMMM d, yyyy h:mmaa" className='input input-bordered input-primary mt-2 w-full shadow-lg border-none focus:outline-0' selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
 
                         <div className='text-start'>

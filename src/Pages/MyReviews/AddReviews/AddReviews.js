@@ -2,16 +2,14 @@ import React, { useContext, useState } from 'react';
 import { AuthProvider } from '../../../contexts/AuthContext';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import toast from 'react-hot-toast';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useTitle from '../../../hooks/useTitle';
-import { useLocation, useNavigate } from 'react-router-dom';
 
-const AddReviews = ({ _id, title, reviews, setReviews, redirect, setRedirect }) => {
+const AddReviews = ({ _id, title, reviews, setReviews }) => {
     const { user } = useContext(AuthProvider);
     const [startDate, setStartDate] = useState(new Date());
     useTitle('Add Review');
-   
+    
 
     const handleReview = event => {
         event.preventDefault();
@@ -62,13 +60,13 @@ const AddReviews = ({ _id, title, reviews, setReviews, redirect, setRedirect }) 
                         </div>
 
                         <div className='text-start'>
-                            <label className='font-semibold' htmlFor="email">Email</label>
-                            <input type="email" placeholder="Your Email" readOnly defaultValue={user?.email} name='email' className="input input-bordered input-primary focus:outline-0 mt-2 w-full shadow-lg border-none" required />
+                            <label className='font-semibold' htmlFor="service">Service Name</label>
+                            <input type="text" readOnly defaultValue={title} placeholder="Service" name='service' className="input input-bordered mt-2 focus:outline-0 input-primary w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>
-                            <label className='font-semibold' htmlFor="date">Date</label>
-                            <DatePicker dateFormat="MMMM d, yyyy h:mmaa" className='input input-bordered input-primary mt-2 w-full shadow-lg border-none focus:outline-1' selected={startDate} onChange={(date) => setStartDate(date)} />
+                            <label className='font-semibold' htmlFor="email">Email</label>
+                            <input type="email" placeholder="Your Email" readOnly defaultValue={user?.email} name='email' className="input input-bordered input-primary focus:outline-0 mt-2 w-full shadow-lg border-none" required />
                         </div>
 
                         <div className='text-start'>

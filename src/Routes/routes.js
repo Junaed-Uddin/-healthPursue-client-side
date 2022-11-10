@@ -7,7 +7,6 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home/Home";
 import ServiceDetails from "../Pages/Home/Services/ServiceDetails";
 import Login from "../Pages/Login/Login";
-import AddReviews from "../Pages/MyReviews/AddReviews/AddReviews";
 import EditReviews from "../Pages/MyReviews/EditReviews/EditReviews";
 import MyReviews from "../Pages/MyReviews/MyReviews/MyReviews";
 import Register from "../Pages/Register/Register";

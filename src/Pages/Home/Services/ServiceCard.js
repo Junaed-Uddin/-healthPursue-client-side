@@ -23,7 +23,7 @@ const ServiceCard = ({ service }) => {
                 <p className='text-start'>{description.length > 100 ? description.slice(0, 100) + '...' : description}</p>
                 <div className="card-actions flex flex-wrap justify-between items-center mt-3">
                     <h2 className="text-lg text-violet-500 font-semibold">Price: ${price}</h2>
-                    <Link to={`/services/${_id}`}><button className="btn text-white border-none">View Details</button></Link>
+                    <Link to={`/services/${_id}`}><button className="px-3 py-2 bg-black rounded text-white border-none">View Details</button></Link>
                 </div>
             </div>
         </div>

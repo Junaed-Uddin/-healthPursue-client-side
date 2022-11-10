@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import banner2 from '../../../assets/banner/banner2.png';
 import banner1 from '../../../assets/banner/banner1.jpg';
+import { BsFillTelephoneFill } from 'react-icons/bs';
 
 const Banner = () => {
     return (
@@ -27,7 +28,7 @@ const Banner = () => {
                                 to="/"
                                 className="inline-flex items-center font-semibold tracking-wider"
                             >
-                                <button className='px-4 py-2 rounded bg-violet-600 text-gray-100 border-none'>Learn more</button>
+                                <button className='flex items-center gap-2 shadow-xl px-4 py-2 rounded bg-violet-600 text-gray-100 border-none'><BsFillTelephoneFill></BsFillTelephoneFill> <span>Contact Us</span></button>
                             </Link>
                         </div>
                         <div className="w-full max-w-2xl xl:px-8 xl:w-5/12">

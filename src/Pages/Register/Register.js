@@ -36,7 +36,7 @@ const Register = () => {
                         toast.error(error.message);
                     })
                 form.reset();
-                navigate('/login');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error)
