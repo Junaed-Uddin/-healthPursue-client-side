@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import useTitle from '../../../hooks/useTitle';
 
 const MyReviews = () => {
+    const { loading } = useContext(AuthProvider);
     const [reviews, setReviews] = useState([]);
     const { user, LogOut } = useContext(AuthProvider);
     useTitle('My Review');
@@ -73,7 +74,7 @@ const MyReviews = () => {
                 </div>
 
                 {
-                    reviews.length === 0 ?
+                    reviews.length === 0 && loading === true?
                         <div className='flex justify-center items-center h-44'>
                             <p className='text-5xl font-semibold text-violet-500'>No reviews were added</p>
                         </div>
