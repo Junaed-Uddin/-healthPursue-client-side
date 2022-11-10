@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AiFillStar, AiOutlinePlusSquare } from 'react-icons/ai';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { AuthProvider } from '../../../contexts/AuthContext';
@@ -8,10 +8,13 @@ import AddReviews from '../../MyReviews/AddReviews/AddReviews';
 
 const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
+    const [redirect, setRedirect] = useState(false);
     const { user } = useContext(AuthProvider);
     const service = useLoaderData();
     const { _id, ratings, description, img, price, title } = service.data;
-
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
@@ -43,10 +46,13 @@ const ServiceDetails = () => {
                 <div>
                     {
                         user?.uid ?
-                            <AddReviews reviews={reviews} _id={_id} title={title} setReviews={setReviews}></AddReviews>
+                            <AddReviews reviews={reviews} _id={_id} redirect={redirect} setRedirect={setRedirect} title={title} setReviews={setReviews}></AddReviews>
                             :
                             <div className='flex justify-end'>
-                                <Link to='/login'><button className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span>Please Login to Add Review</span></button></Link>
+                                <Link to='/login'><button onClick={() => {
+                                    setRedirect(true)
+                                    navigate(from, { replace: true });
+                                }} className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span>Please Login to Add Review</span></button></Link>
                             </div>
                     }
                 </div>

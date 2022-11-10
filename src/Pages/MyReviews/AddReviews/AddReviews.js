@@ -7,14 +7,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import useTitle from '../../../hooks/useTitle';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const AddReviews = ({ _id, title, reviews, setReviews }) => {
+const AddReviews = ({ _id, title, reviews, setReviews, redirect, setRedirect }) => {
     const { user } = useContext(AuthProvider);
-    const [redirect, setRedirect] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
     useTitle('Add Review');
-    const location = useLocation();
-    const navigate = useNavigate();
-    const from = location.state?.from?.pathname || "/";
+   
 
     const handleReview = event => {
         event.preventDefault();
@@ -38,10 +35,9 @@ const AddReviews = ({ _id, title, reviews, setReviews }) => {
             body: JSON.stringify(reviewData)
         })
             .then(res => res.json())
-            .then(data => {
+            .then(data => {                
                 console.log(data);
                 if (data.success) {
-                    navigate(from, { replace: true });
                     setReviews([reviewData, ...reviews]);
                     toast.success(data.message);
                     form.reset();
@@ -87,7 +83,7 @@ const AddReviews = ({ _id, title, reviews, setReviews }) => {
                     </div>
 
                     <div className='flex justify-center'>
-                        <button onClick={() => setReviews(true)} type='submit' className='px-4 py-2 flex items-center gap-2 rounded bg-violet-500 text-white  my-3 border-none'><BsFillCheckCircleFill></BsFillCheckCircleFill> <span className='font-semibold'>Submit</span></button>
+                        <button type='submit' className='px-4 py-2 flex items-center gap-2 rounded bg-violet-500 text-white  my-3 border-none'><BsFillCheckCircleFill></BsFillCheckCircleFill> <span className='font-semibold'>Submit</span></button>
                     </div>
                 </form>
             </div>
