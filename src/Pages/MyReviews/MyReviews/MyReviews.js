@@ -66,41 +66,43 @@ const MyReviews = () => {
 
     }
 
+
     return (
         <div className='dark:bg-gray-200 py-3'>
             <div className='container max-w-8xl p-3 sm:p-6 mx-auto '>
-                <div>
-                    <h2 className='text-3xl font-semibold text-start mb-8'>User Reviews</h2>
-                </div>
-
                 {
-                    reviews.length === 0 && loading === true?
+                    reviews.length === 0 ?
                         <div className='flex justify-center items-center h-44'>
                             <p className='text-5xl font-semibold text-violet-500'>No reviews were added</p>
                         </div>
                         :
-                        <div className="overflow-x-auto">
-                            <table className="table table-normal table-auto w-full h-full">
-                                <thead>
-                                    <tr className='relative'>
-                                        <th>Name</th>
-                                        <th>Service Name</th>
-                                        <th>Date</th>
-                                        <th>Review</th>
-                                        <th>Ratings</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        reviews.map(rev => <UserTableData
-                                            key={rev._id}
-                                            rev={rev}
-                                            handleDelete={handleDelete}
-                                        ></UserTableData>)
-                                    }
-                                </tbody>
-                            </table>
+                        <div>
+                            <div>
+                                <h2 className='text-3xl font-semibold text-start mb-8'>User Reviews</h2>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="table table-normal table-auto w-full h-full">
+                                    <thead>
+                                        <tr className='relative'>
+                                            <th>Name</th>
+                                            <th>Service Name</th>
+                                            <th>Date</th>
+                                            <th>Review</th>
+                                            <th>Ratings</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            reviews.map(rev => <UserTableData
+                                                key={rev._id}
+                                                rev={rev}
+                                                handleDelete={handleDelete}
+                                            ></UserTableData>)
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                 }
 
