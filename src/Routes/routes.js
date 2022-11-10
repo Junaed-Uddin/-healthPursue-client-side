@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'AddService',
-                element: <AddService></AddService>
+                element: <PrivateRoute><AddService></AddService></PrivateRoute>
             },
             {
                 path: 'blogs',
