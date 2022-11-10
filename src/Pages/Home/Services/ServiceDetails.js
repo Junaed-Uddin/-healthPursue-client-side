@@ -4,12 +4,14 @@ import { AiFillStar, AiOutlinePlusSquare } from 'react-icons/ai';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { AuthProvider } from '../../../contexts/AuthContext';
 import ServiceTableData from './ServiceTableData';
+import AddReviews from '../../MyReviews/AddReviews/AddReviews';
 
 const ServiceDetails = () => {
     const [reviews, setReviews] = useState([]);
     const { user } = useContext(AuthProvider);
     const service = useLoaderData();
     const { _id, ratings, description, img, price, title } = service.data;
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
@@ -38,22 +40,18 @@ const ServiceDetails = () => {
             </section>
 
             <div className='container max-w-8xl p-3 sm:p-6 mx-auto'>
-                <div className='flex flex-wrap justify-center gap-5 sm:gap-0 sm:justify-between items-center mb-5'>
-                    <div>
-                        <h2 className='text-3xl font-semibold'>All the Reviews</h2>
-                    </div>
-                    <div>
-                        {
-                            user?.uid ?
-                                <>
-                                    <Link to={`/AddReviews/${_id}`}><button className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span className='font-semibold'>Add Review</span></button></Link>
-                                </>
-                                :
-                                <>
-                                    <Link to='/login'><button className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span>Please Login to Add Review</span></button></Link>
-                                </>
-                        }
-                    </div>
+                <div>
+                    {
+                        user?.uid ?
+                            <AddReviews reviews={reviews} _id={_id} title={title} setReviews={setReviews}></AddReviews>
+                            :
+                            <div className='flex justify-end'>
+                                <Link to='/login'><button className='px-3 flex items-center gap-2 bg-amber-400 py-2 text-black'><AiOutlinePlusSquare></AiOutlinePlusSquare><span>Please Login to Add Review</span></button></Link>
+                            </div>
+                    }
+                </div>
+                <div className='text-start pt-5 mb-6'>
+                    <h2 className='text-3xl font-semibold'>All the Reviews</h2>
                 </div>
 
                 {
@@ -64,7 +62,7 @@ const ServiceDetails = () => {
                         :
                         <div className="overflow-x-auto">
                             <table className="table table-normal w-full">
-                                <thead>
+                                <thead className=''>
                                     <tr>
                                         <th>Name</th>
                                         <th>Service Name</th>
