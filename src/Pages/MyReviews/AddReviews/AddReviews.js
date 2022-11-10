@@ -25,7 +25,7 @@ const AddReviews = ({ _id, title, reviews, setReviews }) => {
             review: form.review.value
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://healthpursue-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': "application/json"

@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/services/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({ params }) => fetch(`https://healthpursue-server.vercel.app/services/${params.id}`),
                 element: <ServiceDetails></ServiceDetails>
             },
             {
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/editReviews/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/user-reviews/${params.id}`),
+                loader: ({ params }) => fetch(`https://healthpursue-server.vercel.app/user-reviews/${params.id}`),
                 element: <PrivateRoute><EditReviews></EditReviews></PrivateRoute>
             },
             {

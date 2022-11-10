@@ -19,7 +19,7 @@ const AddService = () => {
             description: form.description.value
         }
 
-        fetch('http://localhost:5000/allServices', {
+        fetch('https://healthpursue-server.vercel.app/allServices', {
             method: "POST",
             headers: {
                 'content-type': "application/json"

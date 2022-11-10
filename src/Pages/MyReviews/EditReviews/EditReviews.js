@@ -17,7 +17,7 @@ const EditReviews = () => {
     const handleEdit = event => {
         event.preventDefault();
         console.log(reviews)
-        fetch(`http://localhost:5000/user-reviews/${_id}`, {
+        fetch(`https://healthpursue-server.vercel.app/user-reviews/${_id}`, {
             method: 'PATCH',
             headers: {
                 "content-type": "application/json"

@@ -14,7 +14,7 @@ const ServiceDetails = () => {
     const { _id, ratings, description, img, price, title } = service.data;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?serviceId=${_id}`)
+        fetch(`https://healthpursue-server.vercel.app/reviews?serviceId=${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data.data))
     }, [_id])
