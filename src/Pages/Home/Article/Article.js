@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Article = () => {
     return (
-        <div>
+        <div data-aos="fade-up" data-aos-duration="2000">
             <section className="px-6 py-10 dark:bg-gray-200 dark:text-gray-100">
                 <div className="container mx-auto">
                     <h2 className="text-4xl font-bold text-center dark:text-gray-800">News and Articles</h2>

@@ -5,7 +5,7 @@ const UserTableData = ({ rev, handleDelete }) => {
     const { _id, name, email, image, serviceName, date, review, ratings } = rev;
 
     return (
-        <tr>
+        <tr data-aos="fade-up" data-aos-duration="2000">
             <td>
                 <div className="flex items-center space-x-3">
                     <div className="avatar">

@@ -69,9 +69,8 @@ const MyReviews = () => {
 
     }
 
-
     return (
-        <div className='dark:bg-gray-200 py-3'>
+        <div className='dark:bg-gray-200 py-3' data-aos="fade-up" data-aos-duration="2000">
             <div className='container max-w-8xl p-3 sm:p-6 mx-auto '>
                 {
                     reviews.length === 0 && loading === false ?

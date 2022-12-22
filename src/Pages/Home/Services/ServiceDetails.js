@@ -20,7 +20,7 @@ const ServiceDetails = () => {
     }, [_id])
 
     return (
-        <div className='dark:bg-gray-200'>
+        <div className='dark:bg-gray-200' data-aos="fade-up" data-aos-duration="2000">
             <section className="dark:text-gray-100">
                 <div className="container max-w-8xl p-3 sm:p-6 mx-auto space-y-6 sm:space-y-12">
                     <div className="block max-w-sm gap-3 mx-auto sm:max-w-full group lg:grid lg:grid-cols-12 dark:bg-gray-900">
@@ -40,7 +40,7 @@ const ServiceDetails = () => {
             </section>
 
             <div className='container max-w-8xl p-3 sm:p-6 mx-auto'>
-                <div>
+                <div data-aos="fade-up" data-aos-duration="2000">
                     {
                         user?.uid ?
                             <AddReviews reviews={reviews} _id={_id} title={title} setReviews={setReviews}></AddReviews>
@@ -51,38 +51,39 @@ const ServiceDetails = () => {
 
                     }
                 </div>
-                <div className='text-start pt-5 mb-6'>
+                <div className='text-start pt-5 mb-6' data-aos="fade-up" data-aos-duration="2000">
                     <h2 className='text-3xl font-semibold'>All the Reviews</h2>
                 </div>
-
-                {
-                    reviews.length === 0 ?
-                        <div>
-                            <p className='text-3xl text-violet-500 font-semibold'>No reviews Found</p>
-                        </div>
-                        :
-                        <div className="overflow-x-auto">
-                            <table className="table table-normal w-full">
-                                <thead className=''>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Service Name</th>
-                                        <th>Date</th>
-                                        <th>Review</th>
-                                        <th>Ratings</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        reviews.map(rev => <ServiceTableData
-                                            key={rev._id}
-                                            rev={rev}
-                                        ></ServiceTableData>)
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                }
+                <div data-aos="fade-up" data-aos-duration="2000">
+                    {
+                        reviews.length === 0 ?
+                            <div>
+                                <p className='text-3xl text-violet-500 font-semibold'>No reviews Found</p>
+                            </div>
+                            :
+                            <div className="overflow-x-auto">
+                                <table className="table table-normal w-full">
+                                    <thead className=''>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Service Name</th>
+                                            <th>Date</th>
+                                            <th>Review</th>
+                                            <th>Ratings</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            reviews.map(rev => <ServiceTableData
+                                                key={rev._id}
+                                                rev={rev}
+                                            ></ServiceTableData>)
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                    }
+                </div>
             </div>
         </div>
     );

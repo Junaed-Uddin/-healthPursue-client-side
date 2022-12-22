@@ -4,7 +4,7 @@ import useTitle from '../../hooks/useTitle';
 const Blogs = () => {
     useTitle('Blogs');
     return (
-        <div>
+        <div data-aos="fade-up" data-aos-duration="2000">
             <section className="dark:bg-gray-100 dark:text-gray-900">
                 <div className="container flex flex-col justify-center px-4 py-8 mx-auto md:p-8">
                     <h2 className="text-2xl font-semibold sm:text-4xl">Frequently Asked Questions</h2>

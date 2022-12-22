@@ -22,10 +22,10 @@ const Services = () => {
 
     else {
         return (
-            <div>
+            <div data-aos="fade-up" data-aos-duration="2000">
                 <h2 className='text-4xl font-bold mt-10'>Services</h2>
                 <p className='my-3 text-xl'>We Offer healthier lifestyle for you</p>
-                <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-3 sm:mx-14 my-10 gap-5 sm:gap-8'>
+                <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mx-3 sm:mx-14 my-10 gap-5 sm:gap-8' data-aos="fade-up" data-aos-duration="2000">
                     {
                         services.map(service => <ServiceCard
                             key={service._id}
@@ -33,7 +33,7 @@ const Services = () => {
                         ></ServiceCard>)
                     }
                 </div>
-                <div className='mb-10 flex justify-center'>
+                <div className='mb-10 flex justify-center' data-aos="fade-up" data-aos-duration="2000">
                     <Link to='/allServices'>
                         <button className='py-2 px-4 flex items-center gap-2 bg-amber-400 rounded font-semibold text-black'><span>View All</span><BsArrowRight></BsArrowRight></button>
                     </Link>

@@ -82,7 +82,7 @@ const Login = () => {
     }
 
     return (
-        <div className='flex justify-center items-center my-10 text-start'>
+        <div className='flex justify-center items-center my-10 text-start' data-aos="fade-up" data-aos-duration="2000">
             <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
                 <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
                     <p className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">

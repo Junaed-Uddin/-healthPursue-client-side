@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Directions = () => {
     return (
-        <div>
+        <div data-aos="fade-up" data-aos-duration="2000">
             <section className="py-6 sm:py-12 dark:bg-gray-800 dark:text-gray-100">
                 <div className="container p-6 mx-auto space-y-8">
                     <div className="space-y-2 text-center">

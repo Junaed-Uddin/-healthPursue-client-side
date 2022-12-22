@@ -41,7 +41,7 @@ const AddService = () => {
     }
 
     return (
-        <div className='my-14'>
+        <div className='my-14' data-aos="fade-up" data-aos-duration="2000">
             <div>
                 <h2 className='text-4xl mb-8 font-semibold'>Add Service</h2>
             </div>

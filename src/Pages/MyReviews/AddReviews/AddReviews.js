@@ -47,7 +47,7 @@ const AddReviews = ({ _id, title, reviews, setReviews }) => {
     }
 
     return (
-        <div className='mb-10 mt-5'>
+        <div className='mb-10 mt-5' data-aos="fade-up" data-aos-duration="2000">
             <div>
                 <h2 className='text-4xl mb-8 font-semibold'>Give Your Feedback</h2>
             </div>

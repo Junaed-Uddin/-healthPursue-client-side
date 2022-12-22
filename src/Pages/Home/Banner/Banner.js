@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import banner2 from '../../../assets/banner/banner2.png';
-import banner1 from '../../../assets/banner/banner1.jpg';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 
 const Banner = () => {
     return (
-        <div className="relative">
+        <div className="relative" data-aos="zoom-out-up" data-aos-duration="2000">
             <img
                 src={banner2}
                 className="absolute inset-0 object-cover w-full h-full"
